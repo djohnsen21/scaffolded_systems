@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input</title>
+    <link rel="stylesheet" href="scaffoldedstyles.css">
+</head>
+<body>
+    <div id="nav-placeholder"></div>  <!-- Nav will load here -->
+    <button id="add-precondition-btn">Add</button>
+
+    <div class="container">
+        <h2>Define Your Project</h2>
+
+        <label for="outcome">Enter Your End Goal:</label>
+        <input type="text" id="outcome" placeholder="Describe your outcome...">
+        <p id="outcome-feedback"></p>
+
+        <label for="precondition">Enter a Precondition:</label>
+        <input type="text" id="precondition" placeholder="Describe a precondition...">
+        <button onclick="addPrecondition()">Add</button>
+        <p id="precondition-feedback"></p>
+
+        <a href="map.html"><button>Go to Map</button></a>
+    </div>
+
+</body>
+</html>
