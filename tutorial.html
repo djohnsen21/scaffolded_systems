@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial – Scaffolded System</title>
+  <link rel="stylesheet" href="scaffoldedstyles.css" />
+  <style>
+    .tutorial-step {
+      background-color: white;
+      border-radius: 12px;
+      padding: 0;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    summary {
+      background-color: #4b7fb3;
+      color: white;
+      padding: 16px 24px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    details[open] summary::after {
+      content: "▲";
+      float: right;
+    }
+
+    summary::after {
+      content: "▼";
+      float: right;
+    }
+
+    .step-content {
+      padding: 24px;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .map-example {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .map-block-example {
+      background-color: #64b5f6;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 8px;
+      margin: 8px;
+      font-weight: bold;
+      width: fit-content;
+    }
+
+    .map-block-example.end-goal {
+      background-color: #35b313;
+      font-size: 1.3rem;
+      padding: 16px 24px;
+    }
+
+    .arrow {
+      font-size: 24px;
+      margin: 4px;
+      color: #00796b;
+    }
+
+    .down-arrow {
+      font-size: 24px;
+      color: #00796b;
+      margin: 10px 0;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .full-map {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 40px auto;
+      padding: 20px;
+      border: 2px dashed #00796b;
+      border-radius: 12px;
+      max-width: 700px;
+      background-color: #f9f9f9;
+    }
+
+    .map-row {
+      display: flex;
+      gap: 12px;
+      margin: 8px 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="container">
+    <h1>How to Build a Theory of Change Map</h1>
+    <p>This short tutorial will walk you through how to create a Theory of Change map using real examples. Follow along and try it for yourself when you're ready.</p>
+
+    <details class="tutorial-step" open>
+      <summary>Step 1: Start with the End Goal</summary>
+      <div class="step-content">
+        <p>Begin by clearly stating the long-term outcome you want to see. This is the goal that sits at the top of your map.</p>
+        <div class="map-example">
+          <div class="map-block-example end-goal">Low Income Residents of Medford Are Food Secure</div>
+        </div>
+      </div>
+    </details>
+
+    <details class="tutorial-step">
+      <summary>Step 2: Ask "What needs to be true for this to happen?"</summary>
+      <div class="step-content">
+        <p>These are your preconditions. Add them underneath the end goal. They should be non-action-oriented — think of states of the world, not tasks.</p>
+        <div class="map-example">
+          <div class="map-block-example">Residents can purchase food</div>
+          <div class="arrow">↑</div>
+          <div class="map-block-example">Food preparation knowledge</div>
+          <div class="arrow">↑</div>
+          <div class="map-block-example">Food is grown</div>
+        </div>
+      </div>
+    </details>
+
+    <details class="tutorial-step">
+      <summary>Step 3: Build out multiple pathways</summary>
+      <div class="step-content">
+        <p>Most outcomes depend on multiple things being true at once. Continue asking "what must be true for this" for each precondition you added.</p>
+        <div class="map-example">
+          <div class="map-block-example">Secure family structure</div>
+          <div class="map-block-example">Transportation available</div>
+          <div class="map-block-example">Knowledge about cooking</div>
+        </div>
+      </div>
+    </details>
+
+    <details class="tutorial-step">
+      <summary>Step 4: Avoid action words</summary>
+      <div class="step-content">
+        <p>Instead of saying "host a workshop" or "distribute flyers", try framing your preconditions as facts: "residents are aware of nutrition" or "information is available".</p>
+      </div>
+    </details>
+
+    <details class="tutorial-step">
+      <summary>Step 5: Try It Yourself</summary>
+      <div class="step-content">
+        <p>Once you understand how the map builds downward from an outcome using condition-based logic, you're ready to try your own.</p>
+      </div>
+    </details>
+
+    <div class="button-container">
+      <a href="workspace.html"><button>Try This Yourself</button></a>
+    </div>
+
+    <hr style="margin: 60px 0;">
+
+    <h2 style="text-align: center; color: #00796b;">Example: Complete Map</h2>
+    <div class="full-map">
+      <div class="map-row">
+        <div class="map-block-example end-goal">Low Income Residents of Medford Are Food Secure</div>
+      </div>
+      <div class="down-arrow">↓</div>
+      <div class="map-row">
+        <div class="map-block-example">Time Availability</div>
+        <div class="map-block-example">Ease of Food Prep</div>
+        <div class="map-block-example">Cooking Utensils</div>
+      </div>
+      <div class="down-arrow">↓</div>
+      <div class="map-row">
+        <div class="map-block-example">Knowledge About Cooking</div>
+        <div class="map-block-example">Food Preparation</div>
+        <div class="map-block-example">Ways to Get to Food</div>
+      </div>
+      <div class="down-arrow">↓</div>
+      <div class="map-row">
+        <div class="map-block-example">Residents Can Purchase Food</div>
+        <div class="map-block-example">Transportation to Get Food</div>
+      </div>
+      <div class="down-arrow">↓</div>
+      <div class="map-row">
+        <div class="map-block-example">Secure Family Structure</div>
+        <div class="map-block-example">Nutrition Information Available</div>
+        <div class="map-block-example">Political Will / EBT / SNAP</div>
+        <div class="map-block-example">Residents Have Income</div>
+      </div>
+      <div class="down-arrow">↓</div>
+      <div class="map-row">
+        <div class="map-block-example">Food is Grown</div>
+        <div class="map-block-example">Farmers Need to Grow Food Sustainably</div>
+        <div class="map-block-example">Available Transportation Infrastructure</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

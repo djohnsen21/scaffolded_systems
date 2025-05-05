@@ -1,184 +1,187 @@
-/* General Styles */
+/* General Body Styling */
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #e0f7fa, #a5d6a7);
-    color: #333;
     margin: 0;
     padding: 0;
-    text-align: center;
-}
-
-/* Centering Containers */
-div {
-    width: 90%;
-    max-width: 600px;
-    margin: 40px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Typography */
-h1 {
-    color: #00796b;
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-h2 {
-    color: #388e3c;
-    font-size: 1.8rem;
-    font-weight: bold;
-}
-
-h3 {
-    color: #2e7d32;
-    font-size: 1.4rem;
-}
-
-p {
-    font-size: 1rem;
-    color: #444;
-}
-
-/* Forms */
-form {
+    font-family: 'Poppins', sans-serif;
+    background-color: #e0f7fa;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  
+  /* Navigation Bar (if any) */
+  #nav-placeholder {
+    height: 60px;
+  }
+  
+  /* Workspace Container - Full Width */
+  .workspace-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-input {
-    width: 80%;
-    padding: 10px;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px 60px;
+    height: calc(100vh - 80px);
+    box-sizing: border-box;
+    gap: 40px;
+  }
+  
+  /* Input Section Styling */
+  .input-section, .map-section {
+    background-color: white;
+    border-radius: 12px;
+    padding: 40px;
+    width: 48%;
+    height: 100%;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  
+  .input-section h2, .map-section h2, .input-section h3 {
+    margin-top: 0;
+  }
+  
+  .input-section input[type="text"],
+  .input-section textarea {
+    width: 100%;
+    padding: 12px;
     margin: 10px 0;
     border: 2px solid #81c784;
     border-radius: 8px;
     font-size: 1rem;
-}
-
-button {
+    box-sizing: border-box;
+  }
+  
+  .input-section textarea {
+    min-height: 120px;
+    resize: none;
+  }
+  
+  /* Buttons */
+  button {
     background-color: #4caf50;
     color: white;
     font-size: 1rem;
-    padding: 10px 15px;
+    padding: 12px 20px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: 0.3s ease;
-}
-
-button:hover {
+  }
+  
+  button:hover {
     background-color: #388e3c;
-}
-
-/* Map Container */
-#map-container {
-    background: #f1f8e9;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Map Blocks */
-.map-block {
-    background: #64b5f6;
-    color: white;
-    padding: 10px;
-    border-radius: 8px;
-    margin: 5px;
-    display: inline-block;
-    cursor: grab;
-    transition: transform 0.2s ease;
-}
-
-.map-block:hover {
-    transform: scale(1.05);
-}
-
-/* Links */
-a {
-    color: #00796b;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    div {
-        width: 95%;
-    }
-
-    input {
-        width: 100%;
-    }
-}
-
-
-/* General Styles */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #e0f7fa, #a5d6a7);
-    color: #333;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-
-/* Navigation Bar */
-#nav-container {
+  }
+  
+  .finish-btn {
+    margin-top: 30px;
+    background-color: #388e3c;
+  }
+  
+  .finish-btn:hover {
+    background-color: #2e7d32;
+  }
+  
+  /* Precondition Input Group */
+  .precondition-input-group {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background: #00796b;
+    gap: 10px;
+  }
+  
+  #precondition {
+    flex-grow: 1;
+  }
+  
+  /* Map Section and Blocks */
+  #map {
+    margin-top: 20px;
+    min-height: 400px;
+    border: 2px dashed #00796b;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    box-sizing: border-box;
+  }
+  
+  .map-block {
+    background-color: #64b5f6;
     color: white;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-/* Logo */
-#logo {
-    height: 50px;
-    cursor: pointer;
-}
-
-/* Back Button */
-#back-button {
-    background: white;
-    color: #00796b;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#back-button:hover {
-    background: #004d40;
-    color: white;
-}
-
-/* Map Blocks */
-.map-block {
-    background: #64b5f6;
-    color: white;
-    padding: 10px;
+    padding: 15px;
     border-radius: 8px;
-    margin: 5px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 200px;
+    word-wrap: break-word;
     cursor: grab;
     transition: transform 0.2s ease;
+  }
+  
+  .map-block:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Remove Button Inside Map Block */
+  .map-block .remove-btn {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #e53935;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+  }
+  
+  /* Page Container for Informational Screens (like index.html) */
+.container {
+  max-width: 960px;
+  margin: 80px auto;
+  padding: 40px 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  text-align: left;
 }
 
-.map-block:hover {
-    transform: scale(1.05);
+.container h1,
+.container h2 {
+  margin-top: 0;
+  color: #00796b;
+}
+
+.container p {
+  line-height: 1.6;
+  font-size: 1.05rem;
+  color: #333;
+}
+
+.container ul {
+  padding-left: 20px;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.container button {
+  margin-top: 30px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 1rem;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.container button:hover {
+  background-color: #388e3c;
 }

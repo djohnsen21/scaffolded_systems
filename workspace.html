@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workspace – Scaffolded System</title>
+  <link rel="stylesheet" href="scaffoldedstyles.css">
+  <style>
+    .workspace-container {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 60px 20px;
+      gap: 40px;
+    }
+
+    .input-section {
+      flex: 1;
+      max-width: 400px;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+
+    .input-section input[type="number"] {
+      font-size: 1.1rem;
+      padding: 12px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    .map-section {
+      flex: 2;
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: auto;
+    }
+
+    .map-layer {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 30px 0;
+      flex-shrink: 0;
+    }
+
+    .map-node {
+      background: #64b5f6;
+      color: white;
+      padding: 16px 20px;
+      border-radius: 10px;
+      cursor: grab;
+      position: relative;
+      font-size: 1rem;
+      transition: transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .map-node:hover {
+      transform: scale(1.05);
+    }
+
+    .map-node.end-goal {
+      background: #35b313;
+      font-size: 1.3rem;
+      font-weight: bold;
+      padding: 20px 28px;
+    }
+
+    .delete-btn {
+      background: transparent;
+      border: none;
+      color: #e53935;
+      font-size: 1.4rem;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .delete-btn:hover {
+      color: #ff7f7f;
+    }
+
+    .map-arrows {
+      font-size: 28px;
+      color: #00796b;
+      margin: 10px auto;
+      text-align: center;
+      width: 100%;
+    }
+
+    .add-below-btn {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      margin-top: 6px;
+    }
+
+    .ai-feedback-inline {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .ai-feedback-inline button,
+    .export-share-buttons button {
+      background-color: #00796b;
+      color: white;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 5px 0;
+    }
+
+    .ai-feedback-inline button:hover,
+    .export-share-buttons button:hover {
+      background-color: #004d40;
+    }
+
+    .export-share-buttons {
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="workspace-container">
+    <div class="input-section">
+      <h2>Start Building</h2>
+      <label for="goal">End Goal:</label>
+      <input type="text" id="goal" placeholder="e.g. Community is food secure">
+      <button onclick="setGoal()">Set Goal</button>
+
+      <hr>
+
+      <h3>Add Precondition</h3>
+      <label for="target-layer">Layer #:</label>
+      <input type="number" id="target-layer" min="1" value="1">
+      <input type="text" id="precondition" placeholder="Enter a precondition">
+      <button onclick="addPrecondition()">Add</button>
+
+      <div class="ai-feedback-inline">
+        <p>Need help refining your logic?</p>
+        <button onclick="alert('AI feedback coming soon!')">Get AI Feedback</button>
+      </div>
+
+      <div class="export-share-buttons">
+        <button onclick="exportMapAsImage()">Export as Image</button>
+        <button onclick="shareMap()">Share</button>
+      </div>
+    </div>
+
+    <div class="map-section">
+      <div id="map"></div>
+    </div>
+  </div>
+
+  <script>
+    let mapData = JSON.parse(localStorage.getItem('mapData')) || [];
+
+    function saveMapData() {
+      localStorage.setItem('mapData', JSON.stringify(mapData));
+    }
+
+    function setGoal() {
+      const text = document.getElementById('goal').value.trim();
+      if (!text) return;
+      mapData = [[{ text, isGoal: true }]];
+      saveMapData();
+      renderMap();
+    }
+
+    function addPrecondition() {
+      const layer = parseInt(document.getElementById('target-layer').value);
+      const text = document.getElementById('precondition').value.trim();
+      if (!text || layer < 1) return;
+      while (mapData.length < layer + 1) mapData.push([]);
+      mapData[layer].push({ text, isGoal: false });
+      saveMapData();
+      renderMap();
+    }
+
+    function deleteNode(layer, index) {
+      mapData[layer].splice(index, 1);
+      if (layer > 0 && mapData[layer].length === 0) mapData.splice(layer, 1);
+      saveMapData();
+      renderMap();
+    }
+
+    function renderMap() {
+      const mapEl = document.getElementById('map');
+      mapEl.innerHTML = '';
+      mapData.forEach((layer, i) => {
+        const row = document.createElement('div');
+        row.className = 'map-layer';
+        layer.forEach((node, j) => {
+          const el = document.createElement('div');
+          el.className = 'map-node' + (node.isGoal ? ' end-goal' : '');
+          if (i !== 0) {
+            el.setAttribute('draggable', true);
+            el.ondragstart = (e) => {
+              e.dataTransfer.setData("text/plain", JSON.stringify({ i, j }));
+            };
+          }
+          const span = document.createElement('span');
+          span.textContent = node.text;
+          el.appendChild(span);
+
+          const delBtn = document.createElement('button');
+          delBtn.className = 'delete-btn';
+          delBtn.textContent = '×';
+          delBtn.onclick = () => deleteNode(i, j);
+          el.appendChild(delBtn);
+
+          row.appendChild(el);
+        });
+
+        if (i !== 0) {
+          row.ondragover = (e) => e.preventDefault();
+          row.ondrop = (e) => {
+            e.preventDefault();
+            const { i: fromLayer, j: fromIndex } = JSON.parse(e.dataTransfer.getData("text/plain"));
+            if (fromLayer === 0 || i === 0) return;
+            const movedNode = mapData[fromLayer][fromIndex];
+            mapData[fromLayer].splice(fromIndex, 1);
+            if (mapData[fromLayer].length === 0 && fromLayer !== 0) mapData.splice(fromLayer, 1);
+            mapData[i].push(movedNode);
+            saveMapData();
+            renderMap();
+          };
+        }
+
+        mapEl.appendChild(row);
+        if (i < mapData.length - 1) {
+          const arrow = document.createElement('div');
+          arrow.className = 'map-arrows';
+          arrow.textContent = '↓';
+          mapEl.appendChild(arrow);
+        }
+      });
+    }
+
+    function exportMapAsImage() {
+      const mapEl = document.getElementById("map");
+      const clone = mapEl.cloneNode(true);
+      const container = document.createElement('div');
+      container.style.position = 'fixed';
+      container.style.left = '-9999px';
+      container.style.top = '0';
+      container.style.width = mapEl.scrollWidth + 'px';
+      container.style.height = mapEl.scrollHeight + 'px';
+      container.appendChild(clone);
+      document.body.appendChild(container);
+
+      html2canvas(clone, {
+        useCORS: true,
+        width: mapEl.scrollWidth,
+        height: mapEl.scrollHeight,
+        windowWidth: mapEl.scrollWidth,
+        windowHeight: mapEl.scrollHeight
+      }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'map.png';
+        link.href = canvas.toDataURL();
+        link.click();
+        document.body.removeChild(container);
+      });
+    }
+
+    function shareMap() {
+      const shareData = {
+        title: 'My Theory of Change Map',
+        text: 'Check out this map I made using Scaffolded System!',
+        url: window.location.href
+      };
+      if (navigator.share) {
+        navigator.share(shareData).catch(err => alert('Error sharing: ' + err));
+      } else {
+        alert('Sharing is not supported in this browser.');
+      }
+    }
+
+    window.onload = renderMap;
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>

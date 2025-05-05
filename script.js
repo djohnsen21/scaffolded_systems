@@ -48,6 +48,64 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+// Handle End Goal submission
+document.addEventListener("DOMContentLoaded", function() {
+    const outcomeInput = document.getElementById("outcome");
+    const submitOutcomeBtn = document.getElementById("submit-outcome-btn");
+    const outcomeDisplay = document.getElementById("outcome-display");
+    const mapContainer = document.getElementById("map");
+  
+    if (submitOutcomeBtn) {
+      submitOutcomeBtn.addEventListener("click", function() {
+        const outcomeText = outcomeInput.value.trim();
+        if (outcomeText !== "") {
+          outcomeDisplay.textContent = "End Goal: " + outcomeText;
+          // Add End Goal block to map
+          mapContainer.innerHTML = `<div class="map-block" id="end-goal-block">${outcomeText}</div>`;
+          localStorage.setItem("endGoal", outcomeText);
+        }
+      });
+    }
+  
+    // Restore saved End Goal
+    const savedEndGoal = localStorage.getItem("endGoal");
+    if (savedEndGoal && document.getElementById("end-goal-block") === null) {
+      outcomeDisplay.textContent = "End Goal: " + savedEndGoal;
+      mapContainer.innerHTML = `<div class="map-block" id="end-goal-block">${savedEndGoal}</div>`;
+    }
+  
+    // Add preconditions to the map
+    const addPreconditionBtn = document.getElementById("add-precondition-btn");
+    if (addPreconditionBtn) {
+      addPreconditionBtn.addEventListener("click", function() {
+        const precondition = document.getElementById("precondition").value.trim();
+        if (precondition !== "") {
+          const block = document.createElement("div");
+          block.className = "map-block";
+          block.textContent = precondition;
+  
+          const removeBtn = document.createElement("button");
+          removeBtn.className = "remove-btn";
+          removeBtn.innerHTML = "&times;";
+          removeBtn.addEventListener("click", () => block.remove());
+  
+          block.appendChild(removeBtn);
+          mapContainer.appendChild(block);
+          document.getElementById("precondition").value = "";
+        }
+      });
+    }
+  
+    // Finish Map button
+    const finishMapBtn = document.getElementById("finish-map-btn");
+    if (finishMapBtn) {
+      finishMapBtn.addEventListener("click", function() {
+        alert("Map submitted! AI feedback is now being generated (feature coming soon).");
+      });
+    }
+  });
+  
+
 // Add Preconditions to Map (Fix Button Click Issue)
 document.addEventListener("DOMContentLoaded", function() {
     let addPreconditionButton = document.getElementById("add-precondition-btn");

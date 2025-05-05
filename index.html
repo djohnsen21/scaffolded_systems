@@ -1,25 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Empowering Changemakers</title>
-    <link rel="stylesheet" href="scaffoldedstyles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scaffolded System</title>
+  <link rel="stylesheet" href="scaffoldedstyles.css" />
+  <style>
+    .action-sections {
+      display: flex;
+      gap: 40px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .action-box {
+      flex: 1;
+      min-width: 300px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .action-box a {
+      display: flex;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+
+    .action-box h2 {
+      margin-top: 0;
+      color: #00796b;
+    }
+
+    .action-box p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .action-box button {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <div id="nav-placeholder"></div>  <!-- Nav will load here -->
-    <button id="add-precondition-btn">Add</button>
+  <div id="nav-placeholder"></div>
 
-    <div class="container">
-        <h1>Welcome to Empowering Changemakers</h1>
-        <p>Log in to get started.</p>
-        <form action="welcome.html">
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
-            <button type="submit">Log In</button>
-        </form>
-        <p>Don't have an account? <a href="#">Sign up</a></p>
+  <div class="container">
+    <h1>Welcome to Scaffolded System</h1>
+
+    <p>
+      <strong>Empowering Changemakers Through Structure</strong><br><br>
+      This tool helps individuals and small teams turn big ideas into clear, fundable, and actionable plans using a “Theory of Change” framework.<br><br>
+      Rather than starting with tasks or to-do lists, this system encourages you to define the <em>outcome</em> you want to achieve, and envision the real-world change you desire.<br><br>
+      From there, you’ll map out a sequence of non-action-oriented preconditions — specific conditions that must be true for your goal to become possible.<br><br>
+      These preconditions are not actions (e.g., “host an event”), but rather states of the world or community (e.g., “community members are aware of the issue”). By focusing on what must <em>exist</em>, rather than what must <em>be done</em>, this tool helps you clarify your vision and think more strategically about change.
+    </p>
+
+    <hr style="margin: 40px 0;">
+
+    <div class="action-sections">
+      <div class="action-box">
+        <h2>Ready to Make a Change?</h2>
+        <p>This tool helps you plan and map your project in a structured way.</p>
+        <h3>What We Need From You:</h3>
+        <ul>
+          <li><strong>End Goal:</strong> The outcome you want to achieve.</li>
+          <li><strong>Preconditions:</strong> Non-action conditions necessary for your goal.</li>
+        </ul>
+        <a href="workspace.html"><button>Start Your Project</button></a>
+      </div>
+
+      <div class="action-box">
+        <h2>Confused? Want an Example?</h2>
+        <p>Check out a step-by-step example in our interactive tutorial.</p>
+        <a href="tutorial.html"><button>View Tutorial</button></a>
+      </div>
     </div>
+  </div>
 
+  <script src="script.js"></script>
 </body>
 </html>
