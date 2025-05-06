@@ -143,6 +143,15 @@
       text-align: center;
     }
   </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      fetch('nav.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('nav-placeholder').innerHTML = data;
+        });
+    });
+  </script>  
 </head>
 <body>
   <div id="nav-placeholder"></div>
@@ -333,6 +342,29 @@
     }
 
     window.onload = renderMap;
+
+    function getAIFeedback() {
+      fetch('http://localhost:5000/api/feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          goal: mapData[0][0].text,
+          preconditions: mapData.slice(1).flat().map(p => p.text)
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.feedback); // or display in a div
+      })
+      .catch(err => {
+        console.error('Error:', err);
+        alert('Failed to get AI feedback.');
+      });
+    }
+
+
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
