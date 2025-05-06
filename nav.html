@@ -1,13 +1,11 @@
-<div id="nav-container">
-    <button id="back-button" onclick="goBack()">← Back</button>
-    <a href="index.html">
-      <img src="logo.png" alt="Logo" id="logo">
-    </a>
+<nav class="top-nav">
+  <div class="nav-left">
+    <button onclick="history.back()">← Back</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="tutorial.html">Tutorial</a>
   </div>
-  
-  <script>
-    function goBack() {
-      window.history.back();
-    }
-  </script>
-  
+  <div class="nav-logo">
+    <img src="logo.png" alt="Scaffolded System Logo">
+  </div>
+</nav>
