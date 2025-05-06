@@ -95,7 +95,7 @@ body {
   #map {
     margin-top: 20px;
     min-height: 400px;
-    border: 2px dashed #00796b;
+    border: none;
     border-radius: 12px;
     padding: 20px;
     display: flex;
@@ -184,4 +184,50 @@ body {
 
 .container button:hover {
   background-color: #388e3c;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #00796b;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.nav-left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.nav-left a, .nav-left button {
+  color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.nav-left a:hover, .nav-left button:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.nav-logo {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.nav-logo img {
+  max-height: 40px;
+  max-width: 220px;
+  object-fit: contain;
 }
