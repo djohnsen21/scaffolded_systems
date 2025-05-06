@@ -143,6 +143,15 @@
       text-align: center;
     }
   </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      fetch('nav.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('nav-placeholder').innerHTML = data;
+        });
+    });
+  </script>  
 </head>
 <body>
   <div id="nav-placeholder"></div>
