@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – Scaffolded System</title>
+  <link rel="stylesheet" href="scaffoldedstyles.css" />
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="container" style="padding: 40px; max-width: 800px; margin: 0 auto;">
+    <h1>About This Project</h1>
+    <p>
+      The Scaffolded System is designed to help changemakers, especially those in grassroots political and community-based movements, transform big ideas into actionable, fundable plans.
+    </p>
+    <p>
+      Using a "Theory of Change" approach, this tool prompts users to focus on non-action-oriented preconditions that must be true to reach their goal. It encourages thoughtful sequencing, logic modeling, and AI-powered feedback to scaffold impact-driven strategy.
+    </p>
+  </div>
+
+  <script>
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+  </script>
+</body>
+</html>
