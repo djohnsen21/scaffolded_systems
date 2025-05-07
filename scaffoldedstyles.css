@@ -188,29 +188,27 @@ body {
 
 .top-nav {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  padding: 20px 24px;
+  justify-content: space-between;
+  padding: 12px 24px;
   background-color: #ebfffe;
   position: sticky;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  flex-wrap: wrap;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
 }
 
 .nav-logo {
   flex: 1;
-  text-align: center;
-}
-
-.nav-left {
-  flex: 1;
   display: flex;
-  justify-content: flex-start;
-  gap: 16px;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .nav-left a, .nav-left button {
@@ -250,7 +248,7 @@ body {
   border-left: 5px solid #ffeeba;
   border-radius: 6px;
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.2;
 }
 
 /* Responsive Layout for Tablets and Mobile */
