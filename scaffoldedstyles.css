@@ -188,7 +188,7 @@ body {
 
 .top-nav {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   padding: 35px 24px;
   background-color: #ebfffe;
@@ -206,7 +206,7 @@ body {
 }
 
 .nav-left a, .nav-left button {
-  color: white;
+  color: rgb(8, 51, 6);
   text-decoration: none;
   background: none;
   border: none;
@@ -222,14 +222,77 @@ body {
 }
 
 #nav-logo {
-  height: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  padding: 5px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
 }
 
 .nav-logo img {
-  max-height: 40px;
-  max-width: 220px;
+  max-height: 60px; /* increase logo size */
+  max-width: 260px;
   object-fit: contain;
+}
+
+.instruction-text {
+  background: #fff3cd;
+  color: #856404;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-left: 5px solid #ffeeba;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Responsive Layout for Tablets and Mobile */
+@media (max-width: 1024px) {
+  .workspace-container {
+    flex-direction: column;
+    padding: 30px 20px;
+  }
+
+  .input-section, .map-section {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+  }
+
+  .precondition-input-group {
+    flex-direction: column;
+  }
+
+  #target-layer {
+    max-width: 100%;
+  }
+
+  .button-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .map-layer {
+    justify-content: center;
+  }
+
+  .nav-left {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+    
+
+  .top-nav {
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .nav-logo img {
+    max-height: 32px;
+    margin-bottom: 10px;
+  }
 }
