@@ -166,6 +166,16 @@
       <hr>
 
       <h3>Add Precondition</h3>
+      <div class="instruction-text">
+        <ul style="list-style-type: disc; margin: 0; padding-left: 18px; font-size: 0.95rem; color: #333;">
+          <li><strong>Each layer</strong> represents a logical step <em>before</em> the one above it.</li>
+          <li>The <strong>top layer</strong> is your <em>end goal</em>.</li>
+          <li>Each layer below contains <em>preconditions</em> that must be true for the layer above to happen.</li>
+          <li>Use layers to show how your ideas depend on one another.</li>
+          <li>Set the correct layer number <em>before</em> clicking “Add.”</li>
+        </ul>
+      </div>
+      
       <label for="target-layer">Layer #:</label>
       <input type="number" id="target-layer" min="1" value="1">
       <input type="text" id="precondition" placeholder="Enter a precondition">
